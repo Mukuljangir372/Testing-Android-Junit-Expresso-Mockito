@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -16,6 +19,9 @@ class MainViewModel(
     private val _users = MutableLiveData<List<String>>()
     val users : LiveData<List<String>> get() =  _users
 
+    private val _usersByFlow = MutableStateFlow<List<String>>(arrayListOf())
+    val usersByFlow : Flow<List<String>> get() = _usersByFlow
+
     private val registerUsers: ArrayList<String> = arrayListOf()
 
     fun getUsers(){
@@ -24,6 +30,10 @@ class MainViewModel(
             delay(2000)
             _users.value = result
         }
+    }
+
+    suspend fun getUsersByFlow() = flow {
+        emit(listOf("1"))
     }
 
     var myUsers = arrayListOf<String>()

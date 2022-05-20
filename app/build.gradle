@@ -73,4 +73,8 @@ dependencies {
     //COMPOSE
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+
+    //TURBINE (for testing flow)
+    testImplementation 'app.cash.turbine:turbine:0.8.0'
 }
